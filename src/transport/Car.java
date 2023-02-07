@@ -40,7 +40,7 @@ public class Car {
         this.year = (year <= 0 ? 2000 : year);
         this.country = (country == null || country.isEmpty() ? "default" : country);
         setTransmission(transmission);
-        this.bodyType = (bodyType == null || bodyType.isEmpty() ? "Sedan" : bodyType);
+        this.bodyType = (bodyType == null || bodyType.isEmpty() ? "default" : bodyType);
         setNumber(number);
         this.numberOfSeats = (numberOfSeats <= 0 ? 5 : numberOfSeats);
         this.summerTires = summerTires;
