@@ -1,12 +1,7 @@
 package transport;
 
-public class Car {
-    private final String brand;
-    private final String model;
+public class Car extends Transport {
     private double engineVolume;
-    private String color;
-    private final int year;
-    private final String country;
     private String transmission;
     private final String bodyType;
     private String number;
@@ -32,13 +27,11 @@ public class Car {
         }
     }
 
-    public Car(String brand, String model, double engineVolume, String color, int year, String country, String transmission, String bodyType, String number, int numberOfSeats, boolean summerTires, Key key) {
-        this.brand = (brand == null || brand.isEmpty() ? "default" : brand);
-        this.model = (model == null || model.isEmpty() ? "default" : model);
+    public Car(String brand, String model, int year, String country, String color, int maxSpeed,
+               double engineVolume, String transmission, String bodyType, String number,
+               int numberOfSeats, boolean summerTires, Key key) {
+        super(brand, model, year, country, color, maxSpeed);
         setEngineVolume(engineVolume);
-        setColor(color);
-        this.year = (year <= 0 ? 2000 : year);
-        this.country = (country == null || country.isEmpty() ? "default" : country);
         setTransmission(transmission);
         this.bodyType = (bodyType == null || bodyType.isEmpty() ? "Sedan" : bodyType);
         setNumber(number);
@@ -47,21 +40,6 @@ public class Car {
         setKey(key);
     }
 
-    public String getBrand() {
-        return brand;
-    }
-
-    public String getModel() {
-        return model;
-    }
-
-    public int getYear() {
-        return year;
-    }
-
-    public String getCountry() {
-        return country;
-    }
 
     public String getBodyType() {
         return bodyType;
@@ -73,10 +51,6 @@ public class Car {
 
     public double getEngineVolume() {
         return engineVolume;
-    }
-
-    public String getColor() {
-        return color;
     }
 
     public String getTransmission() {
@@ -93,10 +67,6 @@ public class Car {
 
     public void setEngineVolume(double engineVolume) {
         this.engineVolume = (engineVolume <= 0 ? 1.5 : engineVolume);
-    }
-
-    public void setColor(String color) {
-        this.color = (color == null || color.isEmpty() ? "White" : color);
     }
 
     public void setTransmission(String transmission) {
@@ -120,21 +90,15 @@ public class Car {
 
     @Override
     public String toString() {
-        return "Car{" +
-                "brand='" + brand + '\'' +
-                ", model='" + model + '\'' +
-                ", engineVolume=" + engineVolume +
-                ", color='" + color + '\'' +
-                ", year=" + year +
-                ", country='" + country + '\'' +
+        return  "Car{" + super.toString() +
+                "engineVolume=" + engineVolume +
                 ", transmission='" + transmission + '\'' +
                 ", bodyType='" + bodyType + '\'' +
                 ", number='" + number + '\'' +
                 ", numberOfSeats=" + numberOfSeats +
-                ", tires=" + (summerTires ? "Summer" : "Winter") +
-                ", remoteEngineStart=" + (key.remoteEngineStart ? "+" : "-") +
-                ", keylessAccess=" + (key.keylessAccess ? "+" : "-") +
-                '}';
+                ", summerTires=" + summerTires +
+                ", key=" + key +
+                "} ";
     }
 
     private void changeTires(int month) {
