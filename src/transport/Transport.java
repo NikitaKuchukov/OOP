@@ -1,20 +1,16 @@
 package transport;
 
-public class Transport {
+public abstract class Transport<T extends Driver> implements Competing {
     private final String brand;
     private final String model;
-    private final int year;
-    private final String country;
-    private String color;
-    private int maxSpeed;
+    private double engineVolume;
+    private T driver;
 
-    public Transport(String brand, String model, int year, String country, String color, int maxSpeed) {
+    public Transport(String brand, String model, double engineVolume, T driver) {
         this.brand = (brand == null || brand.isEmpty() ? "default" : brand);
         this.model = (model == null || model.isEmpty() ? "default" : model);
-        this.year = (year <= 0 ? 2020: year);
-        this.country = (country == null || country.isEmpty() ? "default" : country);
-        this.color = (color == null || color.isEmpty() ? "default" : color);
-        this.maxSpeed = (maxSpeed <= 0 ? 40 : maxSpeed);
+        this.engineVolume = engineVolume;
+        setDriver(driver);
     }
 
     public String getBrand() {
@@ -25,38 +21,31 @@ public class Transport {
         return model;
     }
 
-    public int getYear() {
-        return year;
+    public double getEngineVolume() {
+        return engineVolume;
     }
 
-    public String getCountry() {
-        return country;
+    public T getDriver() {
+        return driver;
     }
 
-    public String getColor() {
-        return color;
+    public void setDriver(T driver) {
+        this.driver = driver;
     }
 
-    public int getMaxSpeed() {
-        return maxSpeed;
+    public void setEngineVolume(double engineVolume) {
+        this.engineVolume = (engineVolume <= 0 ? 1.5 : engineVolume);
     }
 
-    public void setColor(String color) {
-        this.color = color;
-    }
+    public abstract void startMove();
 
-    public void setMaxSpeed(int maxSpeed) {
-        this.maxSpeed = maxSpeed;
-    }
+    public abstract void finishMove();
 
     @Override
     public String toString() {
-        return "brand='" + brand + '\'' +
+        return "{brand='" + brand + '\'' +
                 ", model='" + model + '\'' +
-                ", year=" + year +
-                ", country='" + country + '\'' +
-                ", color='" + color + '\'' +
-                ", maxSpeed=" + maxSpeed +
-                ' ';
+                ", engineVolume=" + engineVolume +
+                '}';
     }
 }
