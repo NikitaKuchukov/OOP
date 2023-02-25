@@ -24,22 +24,22 @@ public class Main {
         driverD[3] = new DriverD("Yriy", true, 10);
 
         Cars[] car = new Cars[4];
-        car[0] = new Cars("BMW", "530L", 3.0, driverB[0]);
-        car[1] = new Cars("Audi", "A8", 4.2, driverB[2]);
-        car[2] = new Cars("Mercedes", "S600", 5.0, driverB[1]);
-        car[3] = new Cars("Nissan", "Primera", 1.8, driverB[3]);
+        car[0] = new Cars("BMW", "530L", 3.0, driverB[0], Cars.BodyType.COUPE);
+        car[1] = new Cars("Audi", "A8", 4.2, driverB[2], Cars.BodyType.SEDAN);
+        car[2] = new Cars("Mercedes", "S600", 5.0, driverB[1], Cars.BodyType.SEDAN);
+        car[3] = new Cars("Nissan", "Primera", 1.8, driverB[3], Cars.BodyType.PICKUP);
 
         Trucks[] truck = new Trucks[4];
-        truck[0] = new Trucks("Kamaz", "1660", 6.0, driverC[2]);
-        truck[1] = new Trucks("Volvo", "Z8800", 5.5, driverC[1]);
-        truck[2] = new Trucks("Mercedes", "T440", 5.0, driverC[0]);
-        truck[3] = new Trucks("Shachman", "X3000", 6.5, driverC[3]);
+        truck[0] = new Trucks("Kamaz", "1660", 6.0, driverC[2], Trucks.Carrying.N1);
+        truck[1] = new Trucks("Volvo", "Z8800", 5.5, driverC[1], Trucks.Carrying.N2);
+        truck[2] = new Trucks("Mercedes", "T440", 5.0, driverC[0], Trucks.Carrying.N3);
+        truck[3] = new Trucks("Shachman", "X3000", 6.5, driverC[3], Trucks.Carrying.N2);
 
         Buses[] bus = new Buses[4];
-        bus[0] = new Buses("Volvo", "B13R", 4.0, driverD[3]);
-        bus[1] = new Buses("Daewoo", "BS106", 3.8, driverD[1]);
-        bus[2] = new Buses("Volvo", "B16R", 4.2, driverD[0]);
-        bus[3] = new Buses("Liaz", "6213", 3.5, driverD[2]);
+        bus[0] = new Buses("Volvo", "B13R", 4.0, driverD[3], Buses.Capacity.SMALL);
+        bus[1] = new Buses("Daewoo", "BS106", 3.8, driverD[1], Buses.Capacity.BIG);
+        bus[2] = new Buses("Volvo", "B16R", 4.2, driverD[0], Buses.Capacity.VERY_SMALL);
+        bus[3] = new Buses("Liaz", "6213", 3.5, driverD[2], Buses.Capacity.VERY_BIG);
 
         for (Cars cars : car) {
             if (cars.getDriver().isDrivingLicense()) {
