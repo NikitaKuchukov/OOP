@@ -1,5 +1,7 @@
 package transport;
 
+import java.io.IOException;
+
 public class Buses extends Transport<DriverD> {
     public Buses(String brand, String model, double engineVolume, DriverD driver) {
         super(brand, model, engineVolume, driver);
@@ -15,6 +17,11 @@ public class Buses extends Transport<DriverD> {
     public void finishMove() {
         System.out.println("Bus " + getBrand() + " has started moving");
 
+    }
+
+    @Override
+    public void passTheDiagnostic() throws TransportTypeException {
+        throw new TransportTypeException("Buses don't pass diagnostic");
     }
 
     public void pitStop() {

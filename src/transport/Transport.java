@@ -41,6 +41,8 @@ public abstract class Transport<T extends Driver> implements Competing {
 
     public abstract void finishMove();
 
+    public abstract void passTheDiagnostic() throws TransportTypeException;
+
     @Override
     public String toString() {
         return "{brand='" + brand + '\'' +
