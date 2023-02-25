@@ -1,9 +1,11 @@
 import transport.*;
 
+import java.io.IOException;
 import java.util.Arrays;
 
 public class Main {
-    public static void main(String[] args) {
+
+    public static void main(String[] args) throws TransportTypeException {
 
         DriverB[] driverB = new DriverB[4];
         driverB[0] = new DriverB("Anton", true, 3);
@@ -62,5 +64,8 @@ public class Main {
                 System.out.println("Category D driver " + buses.getDriver().getName() + " drives a bus " + buses.getBrand() + " and won't participate in the race");
             }
         }
+        car[2].passTheDiagnostic();
+        truck[1].passTheDiagnostic();
+        bus[3].passTheDiagnostic();
     }
 }

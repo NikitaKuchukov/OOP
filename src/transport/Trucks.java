@@ -90,6 +90,11 @@ public class Trucks extends Transport<DriverC> {
 
     }
 
+    @Override
+    public void passTheDiagnostic() {
+        System.out.println("Truck being diagnosed");
+    }
+
     public void pitStop() {
         System.out.println("Pit Stop for truck");
     }
