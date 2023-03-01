@@ -1,23 +1,41 @@
 package transport;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public abstract class Transport<T extends Driver> implements Competing {
     private final String brand;
     private final String model;
     private double engineVolume;
     private T driver;
+    private final Mechanic mechanic;
 
-    public Transport(String brand, String model, double engineVolume, T driver) {
+    public Transport(String brand, String model, double engineVolume, T driver, Mechanic mechanic) {
         this.brand = (brand == null || brand.isEmpty() ? "default" : brand);
         this.model = (model == null || model.isEmpty() ? "default" : model);
         this.engineVolume = engineVolume;
         setDriver(driver);
+        this.mechanic = mechanic;
     }
 
     public abstract Type getType();
+
     public abstract void printType();
+
+    public boolean isNeedDiagnostic(Transport transport) {
+        if (transport.getType() == Type.BUSES) {
+            return false;
+        }
+        return true;
+    }
+
 
     public String getBrand() {
         return brand;
+    }
+
+    public Mechanic getMechanic() {
+        return mechanic;
     }
 
     public String getModel() {

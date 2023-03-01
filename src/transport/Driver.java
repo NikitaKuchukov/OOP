@@ -40,4 +40,13 @@ public abstract class Driver {
     public abstract void finishMove();
 
     public abstract void refuel();
+
+    @Override
+    public String toString() {
+        return "Driver{" +
+                "name='" + name + '\'' +
+                ", drivingLicense=" + drivingLicense +
+                ", experience=" + experience +
+                '}';
+    }
 }

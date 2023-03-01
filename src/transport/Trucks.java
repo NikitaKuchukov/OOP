@@ -3,10 +3,15 @@ package transport;
 import java.util.Currency;
 
 public class Trucks extends Transport<DriverC> {
-    private static Carrying carrying;
+    private final Carrying carrying;
 
-    public Trucks(String brand, String model, double engineVolume, DriverC driver, Carrying carrying) {
-        super(brand, model, engineVolume, driver);
+    public Trucks(String brand, String model, double engineVolume, DriverC driver, Carrying carrying, Mechanic mechanic) {
+        super(brand, model, engineVolume, driver, mechanic);
+        this.carrying = carrying;
+    }
+
+    public void printDriverAndMechanic() {
+        System.out.println("Truck: " + super.toString() + " " + getDriver() + ", " + getMechanic());
     }
 
     public enum Carrying {
@@ -14,53 +19,34 @@ public class Trucks extends Transport<DriverC> {
         N2(3.5f, 12f),
         N3(12f, null);
 
-        private Float minBorder;
-        private Float maxBorder;
+        private final Float minBorder;
+        private final Float maxBorder;
 
         Carrying(Float minBorder, Float maxBorder) {
             this.minBorder = minBorder;
             this.maxBorder = maxBorder;
         }
 
-        @Override
-        public String toString() {
-            String str;
-            if (minBorder == null) {
-                str = "Грузоподъемность: до " + maxBorder + " тонн";
-            } else if (maxBorder == null) {
-                str = "Грузоподъемность: свыше " + minBorder + " тонн";
-            } else {
-                str = "Грузоподъемность: " +
-                        "от " + minBorder +
-                        " до " + maxBorder + " тонн";
-            }
-            return str;
-        }
-
-        public Carrying getCarrying() {
-            return carrying;
-        }
-
-        public float getMinBorder() {
+        public Float getMinBorder() {
             return minBorder;
-
         }
 
-        public float getMaxBorder() {
+        public Float getMaxBorder() {
             return maxBorder;
         }
 
-        public void setMinBorder(float minBorder) {
-            this.minBorder = minBorder;
+        @Override
+        public String toString() {
+            if (minBorder == null) {
+                return "{Грузоподъемность: до " + maxBorder + " тонн}";
+            } else if (maxBorder == null) {
+                return "{Грузоподъемность: свыше " + minBorder + " тонн}";
+            } else {
+                return "{Грузоподъемность: " +
+                        "от " + minBorder +
+                        " до " + maxBorder + " тонн}";
+            }
         }
-
-        public void setMaxBorder(float maxBorder) {
-            this.maxBorder = maxBorder;
-        }
-    }
-
-    public static Carrying getCarrying() {
-        return carrying;
     }
 
     @Override
@@ -70,10 +56,10 @@ public class Trucks extends Transport<DriverC> {
 
     @Override
     public void printType() {
-        if (getCarrying() == null) {
+        if (getType() == null) {
             System.out.println("Недостаточно данных");
         } else {
-            System.out.println(getCarrying());
+            System.out.println(getType());
         }
     }
 
@@ -111,6 +97,6 @@ public class Trucks extends Transport<DriverC> {
 
     @Override
     public String toString() {
-        return "Truck: " + super.toString() + " " + carrying;
+        return "Truck: " + super.toString() + " " + carrying + " " + getMechanic();
     }
 }
