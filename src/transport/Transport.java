@@ -8,14 +8,14 @@ public abstract class Transport<T extends Driver> implements Competing {
     private final String model;
     private double engineVolume;
     private T driver;
-    private final Mechanic mechanic;
+    private final List<Mechanic> mechanicList;
 
-    public Transport(String brand, String model, double engineVolume, T driver, Mechanic mechanic) {
+    public Transport(String brand, String model, double engineVolume, T driver, List<Mechanic> mechaniclist) {
         this.brand = (brand == null || brand.isEmpty() ? "default" : brand);
         this.model = (model == null || model.isEmpty() ? "default" : model);
         this.engineVolume = engineVolume;
         setDriver(driver);
-        this.mechanic = mechanic;
+        this.mechanicList = mechaniclist;
     }
 
     public abstract Type getType();
@@ -34,8 +34,8 @@ public abstract class Transport<T extends Driver> implements Competing {
         return brand;
     }
 
-    public Mechanic getMechanic() {
-        return mechanic;
+    public List<Mechanic> getMechanicList() {
+        return mechanicList;
     }
 
     public String getModel() {

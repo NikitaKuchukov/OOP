@@ -1,17 +1,18 @@
 package transport;
 
 import java.io.IOException;
+import java.util.List;
 
 public class Buses extends Transport<DriverD> {
     private final Capacity capacity;
 
-    public Buses(String brand, String model, double engineVolume, DriverD driver, Capacity capacity, Mechanic mechanic) {
+    public Buses(String brand, String model, double engineVolume, DriverD driver, Capacity capacity, List<Mechanic> mechanic) {
         super(brand, model, engineVolume, driver, mechanic);
         this.capacity = capacity;
     }
 
     public void printDriverAndMechanic() {
-        System.out.println("Bus: " + super.toString() + " " + getDriver() + ", " + getMechanic());
+        System.out.println("Bus: " + super.toString() + " " + getDriver() + ", " + getMechanicList());
     }
 
     public enum Capacity {
@@ -95,6 +96,6 @@ public class Buses extends Transport<DriverD> {
 
     @Override
     public String toString() {
-        return "Bus: " + super.toString() + " " + capacity + " " + getMechanic();
+        return "Bus: " + super.toString() + " " + capacity + " " + getMechanicList();
     }
 }

@@ -1,17 +1,18 @@
 package transport;
 
 import java.util.Currency;
+import java.util.List;
 
 public class Trucks extends Transport<DriverC> {
     private final Carrying carrying;
 
-    public Trucks(String brand, String model, double engineVolume, DriverC driver, Carrying carrying, Mechanic mechanic) {
+    public Trucks(String brand, String model, double engineVolume, DriverC driver, Carrying carrying, List<Mechanic> mechanic) {
         super(brand, model, engineVolume, driver, mechanic);
         this.carrying = carrying;
     }
 
     public void printDriverAndMechanic() {
-        System.out.println("Truck: " + super.toString() + " " + getDriver() + ", " + getMechanic());
+        System.out.println("Truck: " + super.toString() + " " + getDriver() + ", " + getMechanicList());
     }
 
     public enum Carrying {
@@ -97,6 +98,6 @@ public class Trucks extends Transport<DriverC> {
 
     @Override
     public String toString() {
-        return "Truck: " + super.toString() + " " + carrying + " " + getMechanic();
+        return "Truck: " + super.toString() + " " + carrying + " " + getMechanicList();
     }
 }

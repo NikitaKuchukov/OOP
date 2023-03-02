@@ -5,13 +5,13 @@ import java.util.List;
 public class Cars extends Transport<DriverB> {
     private final BodyType bodyType;
 
-    public Cars(String brand, String model, double engineVolume, DriverB driver, BodyType bodyType, Mechanic mechanic) {
+    public Cars(String brand, String model, double engineVolume, DriverB driver, BodyType bodyType, List<Mechanic> mechanic) {
         super(brand, model, engineVolume, driver, mechanic);
         this.bodyType = bodyType;
     }
 
     public void printDriverAndMechanic() {
-        System.out.println("Car: " + super.toString() + " " + getDriver() + ", " + getMechanic());
+        System.out.println("Car: " + super.toString() + " " + getDriver() + ", " + getMechanicList());
     }
 
     public enum BodyType {
@@ -89,6 +89,6 @@ public class Cars extends Transport<DriverB> {
 
     @Override
     public String toString() {
-        return "Car: " + super.toString() + " " + bodyType + " " + getMechanic();
+        return "Car: " + super.toString() + " " + bodyType + " " + getMechanicList();
     }
 }
