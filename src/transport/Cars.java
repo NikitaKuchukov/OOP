@@ -1,10 +1,17 @@
 package transport;
 
-public class Cars extends Transport<DriverB> {
-    private BodyType bodyType;
+import java.util.List;
 
-    public Cars(String brand, String model, double engineVolume, DriverB driver, BodyType bodyType) {
-        super(brand, model, engineVolume, driver);
+public class Cars extends Transport<DriverB> {
+    private final BodyType bodyType;
+
+    public Cars(String brand, String model, double engineVolume, DriverB driver, BodyType bodyType, List<Mechanic> mechanic) {
+        super(brand, model, engineVolume, driver, mechanic);
+        this.bodyType = bodyType;
+    }
+
+    public void printDriverAndMechanic() {
+        System.out.println("Car: " + super.toString() + " " + getDriver() + ", " + getMechanicList());
     }
 
     public enum BodyType {
@@ -18,24 +25,21 @@ public class Cars extends Transport<DriverB> {
         VAN("Фургон"),
         MINIVAN("Минивен");
 
-        private String bodyType;
+        private final String type;
 
-        BodyType(String bodyType) {
-            this.bodyType = bodyType;
+        BodyType(String type) {
+            this.type = type;
+        }
+
+        public String getType() {
+            return type;
         }
 
         @Override
         public String toString() {
-            return "Тип кузова: " + bodyType;
+            return "{Тип кузова: " + type + "}";
         }
-    }
 
-    public BodyType getBodyType() {
-        return bodyType;
-    }
-
-    public void setBodyType(BodyType bodyType) {
-        this.bodyType = bodyType;
     }
 
     @Override
@@ -45,10 +49,10 @@ public class Cars extends Transport<DriverB> {
 
     @Override
     public void printType() {
-        if (getBodyType() == null) {
+        if (getType() == null) {
             System.out.println("Недостаточно данных");
         } else {
-            System.out.println(getBodyType());
+            System.out.println(getType());
         }
     }
 
@@ -85,6 +89,6 @@ public class Cars extends Transport<DriverB> {
 
     @Override
     public String toString() {
-        return "Car: " + super.toString() + " " + bodyType;
+        return "Car: " + super.toString() + " " + bodyType + " " + getMechanicList();
     }
 }

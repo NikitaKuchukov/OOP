@@ -1,13 +1,19 @@
 package transport;
 
 import java.io.IOException;
+import java.util.List;
 
 public class Buses extends Transport<DriverD> {
-    public Buses(String brand, String model, double engineVolume, DriverD driver, Capacity capacity) {
-        super(brand, model, engineVolume, driver);
+    private final Capacity capacity;
+
+    public Buses(String brand, String model, double engineVolume, DriverD driver, Capacity capacity, List<Mechanic> mechanic) {
+        super(brand, model, engineVolume, driver, mechanic);
+        this.capacity = capacity;
     }
 
-    private static Capacity capacity;
+    public void printDriverAndMechanic() {
+        System.out.println("Bus: " + super.toString() + " " + getDriver() + ", " + getMechanicList());
+    }
 
     public enum Capacity {
         VERY_SMALL(null, 10),
@@ -16,26 +22,12 @@ public class Buses extends Transport<DriverD> {
         BIG(50, 80),
         VERY_BIG(80, 100);
 
-        private Integer minBorder;
-        private Integer maxBorder;
+        private final Integer minBorder;
+        private final Integer maxBorder;
 
         Capacity(Integer minBorder, Integer maxBorder) {
             this.minBorder = minBorder;
             this.maxBorder = maxBorder;
-        }
-
-        @Override
-        public String toString() {
-            if (minBorder == null) {
-                return "Вместимость: до " + maxBorder + " мест";
-            } else {
-                return "Вместимость: " + minBorder +
-                        " - " + maxBorder + " мест";
-            }
-        }
-
-        public Capacity getCapacity() {
-            return capacity;
         }
 
         public int getMinBorder() {
@@ -46,17 +38,15 @@ public class Buses extends Transport<DriverD> {
             return maxBorder;
         }
 
-        public void setMinBorder(int minBorder) {
-            this.minBorder = minBorder;
+        @Override
+        public String toString() {
+            if (minBorder == null) {
+                return "{Вместимость: до " + maxBorder + " мест}";
+            } else {
+                return "{Вместимость: " + minBorder +
+                        " - " + maxBorder + " мест}";
+            }
         }
-
-        public void setMaxBorder(int maxBorder) {
-            this.maxBorder = maxBorder;
-        }
-    }
-
-    public static Capacity getCapacity() {
-        return capacity;
     }
 
     @Override
@@ -66,10 +56,10 @@ public class Buses extends Transport<DriverD> {
 
     @Override
     public void printType() {
-        if (getCapacity() == null) {
+        if (getType() == null) {
             System.out.println("Недостаточно данных");
         } else {
-            System.out.println(getCapacity());
+            System.out.println(getType());
         }
     }
 
@@ -106,6 +96,6 @@ public class Buses extends Transport<DriverD> {
 
     @Override
     public String toString() {
-        return "Bus: " + super.toString() + " " + capacity;
+        return "Bus: " + super.toString() + " " + capacity + " " + getMechanicList();
     }
 }

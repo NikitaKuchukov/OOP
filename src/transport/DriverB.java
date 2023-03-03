@@ -5,6 +5,7 @@ public class DriverB extends Driver {
         super(name, drivingLicense, experience);
     }
 
+
     @Override
     public void startMove() {
         System.out.println("Category B driver " + getName()+" has started move");
