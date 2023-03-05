@@ -22,7 +22,7 @@ public abstract class Transport<T extends Driver> implements Competing {
 
     public abstract void printType();
 
-    public boolean isNeedDiagnostic(Transport transport) {
+    public boolean isNeedDiagnostic(Transport<?> transport) {
         if (transport.getType() == Type.BUSES) {
             return false;
         }

@@ -3,17 +3,17 @@ package transport;
 import java.util.Queue;
 
 public class ServiceStation {
-    private final Queue<Transport> queue;
+    private final Queue<Transport<?>> queue;
 
-    public ServiceStation(Queue<Transport> queue) {
+    public ServiceStation(Queue<Transport<?>> queue) {
         this.queue = queue;
     }
 
-    public Queue<Transport> getQueue() {
+    public Queue<Transport<?>> getQueue() {
         return queue;
     }
 
-    public void addTransportToQueue(Transport transport) {
+    public void addTransportToQueue(Transport<?> transport) {
         if (transport.isNeedDiagnostic(transport)) {
             queue.offer(transport);
             System.out.println(transport + " in line for diagnostics");
@@ -23,7 +23,7 @@ public class ServiceStation {
     }
 
     public void passTheDiagnostic() {
-        Transport transport;
+        Transport<?> transport;
         while ((transport = queue.poll()) !=null) {
             System.out.println(transport + " has been diagnosed");
         }
