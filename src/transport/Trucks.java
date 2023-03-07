@@ -2,6 +2,7 @@ package transport;
 
 import java.util.Currency;
 import java.util.List;
+import java.util.Objects;
 
 public class Trucks extends Transport<DriverC> {
     private final Carrying carrying;
@@ -64,7 +65,6 @@ public class Trucks extends Transport<DriverC> {
         }
     }
 
-
     @Override
     public void startMove() {
         System.out.println("Truck " + getBrand() + " has started moving");
@@ -94,6 +94,24 @@ public class Trucks extends Transport<DriverC> {
     @Override
     public void maxSpeed() {
         System.out.println("Max speed for car: 180 km/h");
+    }
+
+    public Carrying getCarrying() {
+        return carrying;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!(o instanceof Trucks)) {
+            return false;
+        }
+        Trucks truck = (Trucks) o;
+        return super.equals(o) && Objects.equals(truck.getCarrying(), carrying);
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
     }
 
     @Override

@@ -2,6 +2,7 @@ package transport;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Objects;
 
 public class Buses extends Transport<DriverD> {
     private final Capacity capacity;
@@ -92,6 +93,24 @@ public class Buses extends Transport<DriverD> {
     @Override
     public void maxSpeed() {
         System.out.println("Max speed for bus: 140 km/h");
+    }
+
+    public Capacity getCapacity() {
+        return capacity;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!(o instanceof Buses)) {
+            return false;
+        }
+        Buses bus = (Buses) o;
+        return super.equals(o) && Objects.equals(bus.getCapacity(), capacity);
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
     }
 
     @Override
