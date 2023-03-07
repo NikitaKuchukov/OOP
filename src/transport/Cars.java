@@ -1,6 +1,7 @@
 package transport;
 
 import java.util.List;
+import java.util.Objects;
 
 public class Cars extends Transport<DriverB> {
     private final BodyType bodyType;
@@ -39,7 +40,6 @@ public class Cars extends Transport<DriverB> {
         public String toString() {
             return "{Тип кузова: " + type + "}";
         }
-
     }
 
     @Override
@@ -85,6 +85,24 @@ public class Cars extends Transport<DriverB> {
     @Override
     public void maxSpeed() {
         System.out.println("Max speed for car: 240 km/h");
+    }
+
+    public BodyType getBodyType() {
+        return bodyType;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!(o instanceof Cars)) {
+            return false;
+        }
+        Cars car = (Cars) o;
+        return super.equals(o) && Objects.equals(car.getBodyType(), bodyType);
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
     }
 
     @Override
