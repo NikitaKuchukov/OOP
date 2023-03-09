@@ -30,7 +30,6 @@ public abstract class Transport<T extends Driver> implements Competing {
         return true;
     }
 
-
     public String getBrand() {
         return brand;
     }

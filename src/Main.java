@@ -51,33 +51,34 @@ public class Main {
         bus[2] = new Buses("Volvo", "B16R", 4.2, driverD[0], Buses.Capacity.VERY_SMALL, mechanics.subList(2, 3));
         bus[3] = new Buses("Liaz", "6213", 3.5, driverD[2], Buses.Capacity.VERY_BIG, mechanics.subList(3, 4));
 
-//        for (Cars cars : car) {
-//            if (cars.getDriver().isDrivingLicense()) {
-//                System.out.println("Category B driver " + cars.getDriver().getName() + " drives a car " + cars.getBrand() + " and will participate in the race");
-//            } else {
-//                System.out.println("Category B driver " + cars.getDriver().getName() + " drives a car " + cars.getBrand() + " and won't participate in the race");
-//            }
-//        }
-//        for (Trucks trucks : truck) {
-//            if (trucks.getDriver().isDrivingLicense()) {
-//                System.out.println("Category C driver " + trucks.getDriver().getName() + " drives a truck " + trucks.getBrand() + " and will participate in the race");
-//            } else {
-//                System.out.println("Category C driver " + trucks.getDriver().getName() + " drives a truck " + trucks.getBrand() + " and won't participate in the race");
-//            }
-//        }
-//        for (Buses buses : bus) {
-//            if (buses.getDriver().isDrivingLicense()) {
-//                System.out.println("Category D driver " + buses.getDriver().getName() + " drives a bus " + buses.getBrand() + " and will participate in the race");
-//            } else {
-//                System.out.println("Category D driver " + buses.getDriver().getName() + " drives a bus " + buses.getBrand() + " and won't participate in the race");
-//            }
-//        }
+        for (Cars cars : car) {
+            if (cars.getDriver().isDrivingLicense()) {
+                System.out.println("Category B driver " + cars.getDriver().getName() + " drives a car " + cars.getBrand() + " and will participate in the race");
+            } else {
+                System.out.println("Category B driver " + cars.getDriver().getName() + " drives a car " + cars.getBrand() + " and won't participate in the race");
+            }
+        }
+        for (Trucks trucks : truck) {
+            if (trucks.getDriver().isDrivingLicense()) {
+                System.out.println("Category C driver " + trucks.getDriver().getName() + " drives a truck " + trucks.getBrand() + " and will participate in the race");
+            } else {
+                System.out.println("Category C driver " + trucks.getDriver().getName() + " drives a truck " + trucks.getBrand() + " and won't participate in the race");
+            }
+        }
+        for (Buses buses : bus) {
+            if (buses.getDriver().isDrivingLicense()) {
+                System.out.println("Category D driver " + buses.getDriver().getName() + " drives a bus " + buses.getBrand() + " and will participate in the race");
+            } else {
+                System.out.println("Category D driver " + buses.getDriver().getName() + " drives a bus " + buses.getBrand() + " and won't participate in the race");
+            }
+        }
+
         printLine();
 
-//        car[2].printDriverAndMechanic();
-//        car[3].printDriverAndMechanic();
-//        bus[1].printDriverAndMechanic();
-//        truck[3].printDriverAndMechanic();
+        car[2].printDriverAndMechanic();
+        car[3].printDriverAndMechanic();
+        bus[1].printDriverAndMechanic();
+        truck[3].printDriverAndMechanic();
 
         printLine();
 
@@ -89,17 +90,17 @@ public class Main {
         Queue<Transport<?>> queue = new LinkedList<>();
 
         ServiceStation serviceStation = new ServiceStation(queue);
-//        serviceStation.addTransportToQueue(car[1]);
-//        serviceStation.addTransportToQueue(car[3]);
-//        serviceStation.addTransportToQueue(truck[0]);
-//        serviceStation.addTransportToQueue(truck[2]);
-//        serviceStation.addTransportToQueue(bus[1]);
-//        serviceStation.addTransportToQueue(bus[3]);
+        serviceStation.addTransportToQueue(car[1]);
+        serviceStation.addTransportToQueue(car[3]);
+        serviceStation.addTransportToQueue(truck[0]);
+        serviceStation.addTransportToQueue(truck[2]);
+        serviceStation.addTransportToQueue(bus[1]);
+        serviceStation.addTransportToQueue(bus[3]);
 
-//        System.out.println("queue.size = " + queue.size());
+        System.out.println("queue.size = " + queue.size());
 
-//        serviceStation.passTheDiagnostic();
-//        System.out.println("queue.size = " + queue.size());
+        serviceStation.passTheDiagnostic();
+        System.out.println("queue.size = " + queue.size());
 
         printLine();
 
@@ -113,6 +114,21 @@ public class Main {
         transportAndMechanics.put(truck[3], truck[3].getMechanicList());
         for (Map.Entry<Transport<?>, List<Mechanic>> transportListEntry : transportAndMechanics.entrySet()) {
             System.out.println("Transport: " + transportListEntry.getKey() + " have mechanic: " + transportListEntry.getValue());
+        }
+
+        printLine();
+
+        Set<Driver> driverSet = new HashSet<>();
+        driverSet.add(driverB[1]);
+        driverSet.add(driverB[1]);
+        driverSet.add(driverB[3]);
+        driverSet.add(driverC[2]);
+        driverSet.add(driverC[0]);
+        driverSet.add(driverD[1]);
+        driverSet.add(driverD[0]);
+        Iterator<Driver> iterator = driverSet.iterator();
+        while (iterator.hasNext()) {
+            System.out.println(iterator.next());
         }
     }
 }
