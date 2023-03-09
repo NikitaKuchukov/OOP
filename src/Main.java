@@ -118,6 +118,18 @@ public class Main {
 
         printLine();
 
+        Set<Driver> driverSet = new HashSet<>();
+        driverSet.add(driverB[1]);
+        driverSet.add(driverB[1]);
+        driverSet.add(driverB[3]);
+        driverSet.add(driverC[2]);
+        driverSet.add(driverC[0]);
+        driverSet.add(driverD[1]);
+        driverSet.add(driverD[0]);
+        Iterator<Driver> iterator = driverSet.iterator();
+        while (iterator.hasNext()) {
+            System.out.println(iterator.next());
 
         }
     }
+}
